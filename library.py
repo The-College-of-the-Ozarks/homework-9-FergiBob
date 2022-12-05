@@ -1,4 +1,5 @@
 import book as b
+f = open('catalog.csv', 'r')
 
 class Library:
     # __init__
@@ -15,3 +16,24 @@ class Library:
             clean_line = line.strip()
             clean_line = clean_line.split(',')
             self.catalog.append(b.Book(clean_line[1],clean_line[0]))
+            
+    def __repr__(self):
+        return f'{self.name}\n{self.catalog}'
+    
+    def print_catalog(self):
+        print(self.catalog)
+        
+    def print_unavailable(self):
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+f.close()    
