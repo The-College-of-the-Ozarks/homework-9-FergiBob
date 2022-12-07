@@ -4,8 +4,8 @@ class Person:
         self.last = last
         self.Book_List = []
         
-    def __repr__():
-        pass
+    def __repr__(self):
+        return f'{self.first} {self.last}, Books checked out: {self.Book_List}'
         
     def print_name(self):
         print(f'{self.first} {self.last}')        
