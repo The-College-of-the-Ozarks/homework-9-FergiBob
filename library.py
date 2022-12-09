@@ -23,18 +23,24 @@ class Library:
         return f'{self.name}\n{self.catalog}'
     
     def print_catalog(self):
-        print(self.catalog)
-        
+        for n in self.catalog:
+            print(f'{n.name},{n.status}')
+    
+    def print_available(self):
+        for n in self.catalog:
+            if n.status == True:
+                print(n.name)    
+                
     def print_unavailable(self):
-        print(self.unavailable)
+        for n in self.catalog:
+            if n.status == False:    
+                print(f'{n.name} : {n.current}')
    
     def checkout(self, person, book):  
-        book = b.Book(book)
-        person = p.Person(person)
-        if book in self.catalog:
-            person.Book_List.append(book)
-            self.unavailable.append(book)
-            self.catalog.remove(book)
+        # book = b.Book(book)
+        # person = p.Person(person)
+        if book.status == True:
+            person.Book_List.append(book.title)
             book.status = False
             book.current.append(person)
         
@@ -42,14 +48,13 @@ class Library:
             print(f'{book} is currently unavailable.')
             
     def turn_in(self, person, book):
-        book = b.Book(book)
-        person = p.Person(person)
+        # book = b.Book(book)
+        # person = p.Person(person)
         if book in person.Book_List:
-            self.catalog.append(book)
-            #book.list.append(person)
-            #person.books.remove(book)
-            #self.checked_out.remove(book)
+            person.Book_List.remove(book.title)
             book.status = True
+            book.current.remove(person)
+            book.previous.append(person)
 
         else:
             print(f'{book} is not checked out to {person}')
@@ -62,7 +67,12 @@ class Library:
             
     def __sub__(self, book):
         if book in self.catalog and book.status == True:
-  
+            self.catalog.remove(book)
+        else:
+            print(f'Book not available to be removed.')
+            
+    def __len__(self):
+        return len(self.catalog)
   
     
 f.close()    
