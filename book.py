@@ -7,7 +7,7 @@ class Book:
         self.current = []
         
     def __repr__(self):
-        return f'{self.name}, {self.author}, Is checked out: {self.status}, Previous owners: {self.previous}, Current owner: {self.current}'
+        return f'{self.name} by {self.author}, Is available: {self.status}, Previous owners: {self.previous}, Current owner: {self.current}'
     
     def print_name_author(self):
         print(f'{self.name} by {self.author}')
@@ -23,8 +23,8 @@ class Book:
         
     def __len__(self):
         return len(self.previous)
-    def __eq__(self):
-        if self.name == self.author:
+    def __eq__(self, other):
+        if self.name == other:
             return True
         else:
             return False
